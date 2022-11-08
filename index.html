@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var vix;
+        var viy;
+        var tt;
+        var x;
+        var y;
+        var t = 0;
+        var beginmove;
+        var g = 9.8;
+        var xmax;
+        function character() {
+           
+            var vi = document.getElementById("vi").value;
+            g = document.getElementById("planets").value;
+            var area = document.getElementById("area");
+            var theta = document.getElementById('theta').value
+            theta = theta * (Math.PI / 180);
+            console.log(theta)
+
+            //vix,viy
+            var vix = vi * Math.cos(theta).toFixed(3);
+            var viy = vi * Math.sin(theta).toFixed(3);
+
+            //ts,tt
+            var ts = (viy / g).toFixed(3);
+            var tt = (ts * 2).toFixed(3);
+
+            //ymax,xmax
+            xmax = (vix * tt).toFixed(3);
+            var ymax = ((Math.pow(viy, 2) / 2) * g).toFixed(3);
+
+
+            for (t = 0; t <= tt; t += 0.5) {
+                var selectImg = Math.round(Math.random()*6)
+                console.log(selectImg)
+                var img = document.createElement('img');
+                if (selectImg == 0) {
+                    img.src = 'https://i.pinimg.com/originals/eb/57/7c/eb577ceb669cfa3161e4c56c80dea9e1.png'
+                }
+                if (selectImg == 1) {
+                    img.src = 'https://gifimage.net/wp-content/uploads/2017/09/balon-de-futbol-gif-13.gif'
+                }
+                if (selectImg == 2) {
+                    img.src = 'https://www.gifsanimados.org/data/media/604/nave-espacial-imagen-animada-0030.gif'
+                }
+                if (selectImg == 3) {
+                    img.src = 'https://o.remove.bg/downloads/00b8ec99-6a23-493d-98b3-e36239db252c/images-removebg-preview.png'
+                }
+                if (selectImg == 4) {
+                    img.src = 'https://o.remove.bg/downloads/91c2e320-8348-4626-a195-9cf20098c9d4/kisspng-neptune-planet-uranus-web-browser-neptune-5ae876c4063817.8306866815251841960255-removebg-preview.png'
+                }
+                if (selectImg == 5) {
+                    img.src = 'https://i.gifer.com/origin/52/52e4bb28d095ff93d3a4019d43d628bc.gif'
+                }
+                if (selectImg == 6) {
+                    img.src = 'https://recuerdosdepandora.com/wp-content/uploads/2010/07/tierra.gif'
+                }
+                if (selectImg == 7) {
+                    img.src = 'https://o.remove.bg/downloads/1a86eee9-85ff-4b0e-b0a2-47d98c760d56/png-transparent-saturn-planet-solar-system-cassini-huygens-metallic-hydrogen-planet-miscellaneous-desktop-wallpaper-orbit-removebg-preview.png'
+                }
+                var x = vix * t;
+                var y = 400 - (viy * t - (g * Math.pow(t, 2)) / 2);
+                
+                var vy = Math.abs(viy - g * t);
+                var v = Math.sqrt(Math.pow(vix, 2) + Math.pow(vy, 2));
+                img.style.width = 50 + "px";
+                img.style.position = "absolute";
+                img.style.top = y + "px";
+                img.style.left = x + "px";
+                img.title = `velx:${vix},vely:${vy},vel:${v}`;
+                area.appendChild(img);
+            }
+            console.log(selectImg)
+        }
+        function burst() {
+            for (i = 10; i <= 90; i += 10) {
+                var vi = document.getElementById("vi").value;
+                var theta = document.getElementById("theta").value;
+                theta = i
+                g = document.getElementById("planets").value;
+                var area = document.getElementById("area");
+                theta = theta * (Math.PI / 180);
+
+                //vix,viy
+                var vix = vi * Math.cos(theta).toFixed(3);
+                var viy = vi * Math.sin(theta).toFixed(3);
+
+                //ts,tt
+                var ts = (viy / g).toFixed(3);
+                var tt = (ts * 2).toFixed(3);
+
+                //ymax,xmax
+                xmax = (vix * tt).toFixed(3);
+                var ymax = ((Math.pow(viy, 2) / 2) * g).toFixed(3);
+
+                console.log(vix);
+                console.log(viy);
+                console.log(ts);
+                console.log(tt);
+                console.log(xmax);
+                console.log(ymax);
+
+                for (t = 0; t <= tt; t += 0.5) {
+                    var x = vix * t;
+                    var y = 400 - (viy * t - (g * Math.pow(t, 2)) / 2);
+                    var img = document.getElementById('birdsred');
+                    var birds = document.createElement("img");
+                    console.log(vy);
+                    console.log(v);
+                    var vy = Math.abs(viy - g * t);
+                    var v = Math.sqrt(Math.pow(vix, 2) + Math.pow(vy, 2));
+                    birds.src = img.src;
+                    birds.style.width = 50 + "px";
+                    birds.style.position = "absolute";
+                    birds.style.top = y + "px";
+                    birds.style.left = x + "px";
+                    birds.title = `velx:${vix},vely:${vy},vel:${v}`;
+                    area.appendChild(birds);
+                }
+            }
+            img.style.left = xmax + "px";
+            img.style.top = "400px";
+        }
+        function resolve() {
+            var vi = document.getElementById("vi").value;
+            var theta = document.getElementById("theta").value;
+            g = document.getElementById("planets").value;
+            var area = document.getElementById("area");
+            theta = theta * (Math.PI / 180);
+
+            //vix,viy
+            var vix = vi * Math.cos(theta).toFixed(3);
+            var viy = vi * Math.sin(theta).toFixed(3);
+
+            //ts,tt
+            var ts = (viy / g).toFixed(3);
+            var tt = (ts * 2).toFixed(3);
+
+            //ymax,xmax
+            xmax = (vix * tt).toFixed(3);
+            var ymax = ((Math.pow(viy, 2) / 2) * g).toFixed(3);
+
+            console.log(vix);
+            console.log(viy);
+            console.log(ts);
+            console.log(tt);
+            console.log(xmax);
+            console.log(ymax);
+
+            for (t = 0; t <= tt; t += 0.5) {
+                var x = vix * t;
+                var y = 400 - (viy * t - (g * Math.pow(t, 2)) / 2);
+                var img = document.getElementById('birdsred');
+                var birds = document.createElement("img");
+                console.log(vy);
+                console.log(v);
+                var vy = Math.abs(viy - g * t);
+                var v = Math.sqrt(Math.pow(vix, 2) + Math.pow(vy, 2));
+                birds.src = img.src;
+                birds.style.width = 50 + "px";
+                birds.style.position = "absolute";
+                birds.style.top = y + "px";
+                birds.style.left = x + "px";
+                birds.title = `velx:${vix},vely:${vy},vel:${v}`;
+                area.appendChild(birds);
+            }
+            img.style.left = xmax + "px";
+            img.style.top = "400px";
+        }
+        function startmove() {
+            var vi = document.getElementById("vi").value;
+            var theta = document.getElementById("theta").value;
+            g = document.getElementById("planets").value;
+            var area = document.getElementById("area");
+            theta = theta * (Math.PI / 180);
+
+            //vix,viy
+            vix = vi * Math.cos(theta).toFixed(3);
+            viy = vi * Math.sin(theta).toFixed(3);
+
+            //ts,tt
+            var ts = (viy / g).toFixed(3);
+            tt = (ts * 2).toFixed(3);
+
+            //ymax,xmax
+            xmax = (vix * tt).toFixed(3);
+            var ymax = ((Math.pow(viy, 2) / 2) * g).toFixed(3);
+
+            beginmove = setInterval(move, 200);
+        }
+        function move() {
+            var birdsred = document.getElementById("birdsred");
+            g = document.getElementById("planets").value;
+            x = vix * t;
+            y = 400 - (viy * t - (g * Math.pow(t, 2)) / 2);
+            if (t <= tt) {
+                birdsred.style.left = x + "px";
+                birdsred.style.top = y + "px";
+                t += 0.1;
+            } else {
+                clearInterval(beginmove);
+                birdsred.style.left = xmax + "px";
+                birdsred.style.top = "400px";
+            }
+        }
+        function backgroundchange() {
+            var planets = document.getElementById('planets').value;
+            if (planets == '9.807') {
+                document.body.style.background = `url('https://s1.significados.com/foto/earth-11015-1920-41.jpg')`
+            }
+            if (planets == '1.62') {
+                document.body.style.background = `url('https://www.nationalgeographic.com.es/medio/2022/09/23/imagen-de-la-luna_ae2043e2_1041x1041.jpeg')`
+            }
+            if (planets == '274') {
+                document.body.style.background = `url('https://s03.s3c.es/imag/_v0/770x420/6/9/a/600x400_Imagen-cercana-del-sol-iStock.jpg')`
+            }
+            if (planets == '3.7') {
+                document.body.style.background = `url('https://www.pilaradiario.com/u/fotografias/m/2022/5/9/f608x342-115128_144851_0.jpg')`
+            }
+            if (planets == '8.87') {
+                document.body.style.background = `url('https://www.nationalgeographic.com.es/medio/2019/02/04/venus-atmosfera_82068686_800x800.jpg')`
+            }
+            if (planets == '3.721') {
+                document.body.style.background = `url('https://fotografias.antena3.com/clipping/cmsimages02/2022/07/29/38669575-79EF-43F2-9B79-147A556A18C3/marte_69.jpg?crop=1287,724,x81,y0&width=1280&height=720&optimize=low&format=webply')`
+            }
+            if (planets == '24.79') {
+                document.body.style.background = `url('https://www.nationalgeographic.com.es/medio/2021/09/28/jupiter-junto-a-una-de-sus-lunas-europa_505f4f1d_1663x1375.jpg')`
+            }
+            if (planets == '10.44') {
+                document.body.style.background = `url('https://starwalk.space/gallery/images/saturn-planet-guide/1140x641.jpg')`
+            }
+            if (planets == '8.870') {
+                document.body.style.background = `url('https://okdiario.com/img/2018/04/24/-a-que-huele-realmente-urano-la-respuesta-te-sorprendera-2.jpg')`
+            }
+            if (planets == '11.15') {
+                document.body.style.background = `url('https://starwalk.space/gallery/images/neptune-at-opposition-2021/1920x1080.jpg')`
+            }
+            if (planets == '0.62') {
+                document.body.style.background = `url('https://i0.wp.com/imgs.hipertextual.com/wp-content/uploads/2015/09/pluton2-scaled.jpg?fit=2560%2C1707&quality=50&strip=all&ssl=1')`
+            }
+            document.body.style.backgroundRepeat = 'no-repeat'
+            document.body.style.backgroundSize = 'cover'
+        }
+        function characterchange() {
+            var character = document.getElementById('character').value
+            var vi = document.getElementById('vi')
+            var img = document.getElementById('birdsred')
+            if (character == 'ball') {
+                img.src = 'https://gifimage.net/wp-content/uploads/2017/09/balon-de-futbol-gif-13.gif'
+                vi.value = 70;
+            }
+            if (character == 'rocket') {
+                img.src = 'https://www.gifsanimados.org/data/media/604/nave-espacial-imagen-animada-0030.gif'
+                vi.value = 100;
+            }
+            if (character == 'car') {
+                img.src = 'https://o.remove.bg/downloads/00b8ec99-6a23-493d-98b3-e36239db252c/images-removebg-preview.png'
+                img.style.width = '100px'
+                vi.value = 150;
+            }
+            if (character == 'neptune') {
+                img.src = 'https://o.remove.bg/downloads/91c2e320-8348-4626-a195-9cf20098c9d4/kisspng-neptune-planet-uranus-web-browser-neptune-5ae876c4063817.8306866815251841960255-removebg-preview.png'
+                vi.value = 180;
+            }
+            if (character == 'dog') {
+                img.src = 'https://i.gifer.com/origin/52/52e4bb28d095ff93d3a4019d43d628bc.gif'
+                vi.value = 50;
+            }
+            if (character == 'earth') {
+                img.src = 'https://recuerdosdepandora.com/wp-content/uploads/2010/07/tierra.gif'
+                vi.value = 185;
+            }
+            if (character == 'saturn') {
+                img.src = 'https://o.remove.bg/downloads/1a86eee9-85ff-4b0e-b0a2-47d98c760d56/png-transparent-saturn-planet-solar-system-cassini-huygens-metallic-hydrogen-planet-miscellaneous-desktop-wallpaper-orbit-removebg-preview.png'
+                vi.value = 190;
+            }
+
+        }
+    </script>
+    <style>
+        body {
+            background-image: url('https://s1.significados.com/foto/earth-11015-1920-41.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        #birdsred {
+            top: 400px;
+            position: absolute;
+            width: 50px;
+        }
+
+        hr {
+            position: absolute;
+            top: 435px;
+            width: 1000%;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div>vi:<input type="range" value="100" min="20" max="200" id="vi"></div>
+        <div>theta:<input type="text" value="45" id="theta"></div>
+        <div>g:<input type="text" value="9.8" id="g"></div>
+        <div>
+            <select id="planets" onchange="backgroundchange()">
+                Planet:
+                <option value="9.807">Earth</option>
+                <option value="1.62">Moon</option>
+                <option value="274">Sun</option>
+                <option value="3.7">Mercury</option>
+                <option value="8.87">Venus</option>
+                <option value="3.721">Mars</option>
+                <option value="24.79">Jupiter</option>
+                <option value="10.44">Saturn</option>
+                <option value="8.870">Uranus</option>
+                <option value="11.15">Neptune</option>
+                <option value="0.62">Pluto</option>
+            </select>
+        </div>
+        <div>
+            <select id="character" onchange="characterchange()">
+                Character:
+                <option value="ball">Ball</option>
+                <option value="rocket">Rocket</option>
+                <option value="car">Car</option>
+                <option value="neptune">Neptune</option>
+                <option value="dog">Dog</option>
+                <option value="earth">Earth</option>
+                <option value="saturn">Saturn</option>
+            </select>
+        </div>
+        <div style="display: flex;">
+            <div><button onclick="startmove()">Move</button></div>
+            <div><button onclick="resolve()">Resolve</button></div>
+            <div><button onclick="burst()">Burst</button></div>
+            <div><button onclick="character()">Character</button></div>
+        </div>
+        <div id="area"></div>
+        <div>
+            <img id="birdsred" src="https://gifimage.net/wp-content/uploads/2017/09/balon-de-futbol-gif-13.gif" alt="">
+            <hr style="margin-top: 15px; width: 99%; height: 12px; background-color:slategray; border-color: black;">
+        </div>
+
+</html>
